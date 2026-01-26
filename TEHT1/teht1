@@ -1,0 +1,28 @@
+var readlineSync = require("readline-sync");
+
+// Tarkistetaan, onko palindromi
+function isPalindrome(word) {
+  let swapped = "";
+
+  // Käännetään merkkijono silmukassa
+  for (let i = word.length - 1; i >= 0; i--) {
+    swapped += word[i];
+  }
+
+  // Verrataan alkuperäiseen
+  if (word === swapped) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Kysytään sanaa käyttäjältä
+let word = readlineSync.question("Anna tarkistettava sana: ");
+
+// Kutsutaan funktiota
+if (isPalindrome(word)) {
+  console.log("Sana on palindromi.");
+} else {
+  console.log("Sana ei ole palindromi.");
+}
