@@ -44,9 +44,9 @@ while (true) {
 
     // Näytetään tulos käyttäjälle
     if (tulos) {
-      console.log(`Namella ${hakuNimi} loytyi puhelinnumero: ${tulos}`);
+      console.log(`Nimella ${hakuNimi} loytyi puhelinnumero: ${tulos}`);
     } else {
-      console.log(`Namella ${hakuNimi} ei loytynyt puhelinnumeroa.`);
+      console.log(`Nimella ${hakuNimi} ei loytynyt puhelinnumeroa.`);
     }
 
     // Ohjelman lopetus
