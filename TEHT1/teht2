@@ -1,0 +1,61 @@
+var readlineSync = require("readline-sync");
+
+// Puhelinluettelo taulukko
+let puhelinluettelo = [];
+
+// Funktio puhelinnumeron hakemiseen luettelosta nimellä
+function haePuhNro(lista, nimi) {
+  for (let henkilo of lista) {
+    if (henkilo.nimi.toLowerCase() === nimi.toLowerCase()) {
+      return henkilo.numero;
+    }
+  }
+  return null;
+}
+
+// While-loop joka antaa käyttäjän valita toiminnon
+while (true) {
+  console.log("\nValitse toiminto:");
+  console.log("1 = Lisaa henkilo");
+  console.log("2 = Hae puhelinnumero");
+  console.log("0 = Lopeta");
+  let valinta = readlineSync.question("Valintasi: ");
+
+  // Nimen ja numeron lisääminen puhelinluetteloon
+  if (valinta === "1") {
+    let nimi = readlineSync.question("Anna luetteloon lisattava nimi: ");
+    let numero = readlineSync.question(
+      "Anna nimeen yhdistettava puhelinnumero: ",
+    );
+
+    // Lisätään nimi ja numero taulukkoon
+    puhelinluettelo.push({ nimi, numero });
+    // Vahvistus käyttäjälle
+    console.log("Nimi ja puhelinnumero lisatty luetteloon!");
+
+    // Numeron haku nimellä
+  } else if (valinta === "2") {
+    let hakuNimi = readlineSync.question(
+      "Anna nimi jolla haluat hakea puhelinnumeroa: ",
+    );
+
+    // Kutsutaan hakufunktiota
+    let tulos = haePuhNro(puhelinluettelo, hakuNimi);
+
+    // Näytetään tulos käyttäjälle
+    if (tulos) {
+      console.log(`Namella ${hakuNimi} loytyi puhelinnumero: ${tulos}`);
+    } else {
+      console.log(`Namella ${hakuNimi} ei loytynyt puhelinnumeroa.`);
+    }
+
+    // Ohjelman lopetus
+  } else if (valinta === "0") {
+    console.log("Ohjelma lopetetaan.");
+    break;
+
+    // Virheenkäsittely
+  } else {
+    console.log("Virheellinen valinta, yrita uudelleen!");
+  }
+}
